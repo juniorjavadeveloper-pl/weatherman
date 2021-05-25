@@ -15,7 +15,7 @@ class OpenWeatherApiCurrentWeatherDataServiceTest {
         WeatherDataRequestModel weatherDataRequestModel = new WeatherDataRequestModel("Warszawa", "PL");
 
         // when
-        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(weatherDataRequestModel);
+        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getCurrentWeather(weatherDataRequestModel);
 
         // then
         assertNotNull(weatherDataResponse, "weatherDataResponse is null");
@@ -28,7 +28,7 @@ class OpenWeatherApiCurrentWeatherDataServiceTest {
         WeatherDataRequestModel weatherDataRequestModel = new WeatherDataRequestModel(52.229675, 21.012230);
 
         // when
-        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(weatherDataRequestModel);
+        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getCurrentWeather(weatherDataRequestModel);
 
         // then
         assertNotNull(weatherDataResponse, "weatherDataResponse is null");

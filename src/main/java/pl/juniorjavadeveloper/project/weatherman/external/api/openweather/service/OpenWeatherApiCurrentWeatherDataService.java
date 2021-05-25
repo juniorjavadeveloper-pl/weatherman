@@ -22,10 +22,10 @@ public class OpenWeatherApiCurrentWeatherDataService {
     private static final Logger LOGGER = Logger.getLogger(OpenWeatherApiCurrentWeatherDataService.class.getName());
     private static final String SERVER_URL = "http://api.openweathermap.org/data/2.5/weather";
 
-    public OpenWeatherApiCurrentWeatherDataResponse getWeather(WeatherDataRequestModel weatherDataRequest) {
+    public OpenWeatherApiCurrentWeatherDataResponse getCurrentWeather(WeatherDataRequestModel weatherDataRequest) {
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(SERVER_URL).newBuilder();
-        urlBuilder.addQueryParameter("appid", "4129a96d211a9341db7daff3b83901da");
+        urlBuilder.addQueryParameter("appid", "d2637e7f85faf82d4f6ddba63038faf2");
 
         if (weatherDataRequest.getCity() != null) {
             urlBuilder.addQueryParameter("q", weatherDataRequest.getCity() + "," + weatherDataRequest.getCountryCode());

@@ -3,17 +3,32 @@ package pl.juniorjavadeveloper.project.weatherman.model;
 public class WeatherDataRequestModel {
     private String city;
     private String countryCode;
+
     private double latitude;
     private double longitude;
+
+    private int days = 1;
 
     public WeatherDataRequestModel(String city, String countryCode) {
         this.city = city;
         this.countryCode = countryCode;
     }
 
+    public WeatherDataRequestModel(String city, String countryCode, int days) {
+        this.city = city;
+        this.countryCode = countryCode;
+        this.days = days;
+    }
+
     public WeatherDataRequestModel(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public WeatherDataRequestModel(double latitude, double longitude, int days) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.days = days;
     }
 
     public String getCity() {
@@ -32,13 +47,18 @@ public class WeatherDataRequestModel {
         return longitude;
     }
 
+    public int getDays() {
+        return days;
+    }
+
     @Override
     public String toString() {
-        return "LocationModel{" +
+        return "WeatherDataRequestModel{" +
                 "city='" + city + '\'' +
                 ", countryCode='" + countryCode + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", days=" + days +
                 '}';
     }
 }
