@@ -79,4 +79,14 @@ public class Sys {
         this.sunset = sunset;
     }
 
+    @Override
+    public String toString() {
+        return "Sys{" +
+                "type=" + type +
+                ", id=" + id +
+                ", country='" + country + '\'' +
+                ", sunrise=" + sunrise +
+                ", sunset=" + sunset +
+                '}';
+    }
 }

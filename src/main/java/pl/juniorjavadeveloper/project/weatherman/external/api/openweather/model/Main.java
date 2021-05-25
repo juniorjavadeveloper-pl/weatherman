@@ -92,4 +92,15 @@ public class Main {
         this.humidity = humidity;
     }
 
+    @Override
+    public String toString() {
+        return "Main{" +
+                "temp=" + temp +
+                ", feelsLike=" + feelsLike +
+                ", tempMin=" + tempMin +
+                ", tempMax=" + tempMax +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                '}';
+    }
 }
