@@ -9,7 +9,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.OpenWeatherApiCurrentWeatherDataResponse;
-import pl.juniorjavadeveloper.project.weatherman.model.LocationModel;
+import pl.juniorjavadeveloper.project.weatherman.model.WeatherDataRequestModel;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -17,20 +17,21 @@ import java.util.logging.Logger;
 public class OpenWeatherApiCurrentWeatherDataService {
     // API Docs - https://openweathermap.org/current (Current weather data)
     // https://www.latlong.net - Latitude and Longitude Finder
+    // https://www.iso.org/obp/ui - Access the most up to date content in ISO standards
 
     private static final Logger LOGGER = Logger.getLogger(OpenWeatherApiCurrentWeatherDataService.class.getName());
     private static final String SERVER_URL = "http://api.openweathermap.org/data/2.5/weather";
 
-    public OpenWeatherApiCurrentWeatherDataResponse getWeather(LocationModel location) {
+    public OpenWeatherApiCurrentWeatherDataResponse getWeather(WeatherDataRequestModel weatherDataRequest) {
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(SERVER_URL).newBuilder();
         urlBuilder.addQueryParameter("appid", "4129a96d211a9341db7daff3b83901da");
 
-        if (location.getCity() != null) {
-            urlBuilder.addQueryParameter("q", location.getCity() + "," + location.getCountryCode());
+        if (weatherDataRequest.getCity() != null) {
+            urlBuilder.addQueryParameter("q", weatherDataRequest.getCity() + "," + weatherDataRequest.getCountryCode());
         } else {
-            urlBuilder.addQueryParameter("lat", String.valueOf(location.getLatitude()));
-            urlBuilder.addQueryParameter("lon", String.valueOf(location.getLongitude()));
+            urlBuilder.addQueryParameter("lat", String.valueOf(weatherDataRequest.getLatitude()));
+            urlBuilder.addQueryParameter("lon", String.valueOf(weatherDataRequest.getLongitude()));
         }
 
         HttpUrl httpUrl = urlBuilder.build();

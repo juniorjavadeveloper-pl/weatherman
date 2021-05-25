@@ -2,7 +2,7 @@ package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.servi
 
 import org.junit.jupiter.api.Test;
 import pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.OpenWeatherApiCurrentWeatherDataResponse;
-import pl.juniorjavadeveloper.project.weatherman.model.LocationModel;
+import pl.juniorjavadeveloper.project.weatherman.model.WeatherDataRequestModel;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -12,10 +12,10 @@ class OpenWeatherApiCurrentWeatherDataServiceTest {
     void givenService_whenGetWeatherLocationName_thenWeatherDataResponseNotNull() {
         // given
         OpenWeatherApiCurrentWeatherDataService service = new OpenWeatherApiCurrentWeatherDataService();
-        LocationModel location = new LocationModel("Warszawa", "PL");
+        WeatherDataRequestModel weatherDataRequestModel = new WeatherDataRequestModel("Warszawa", "PL");
 
         // when
-        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(location);
+        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(weatherDataRequestModel);
 
         // then
         assertNotNull(weatherDataResponse, "weatherDataResponse is null");
@@ -25,10 +25,10 @@ class OpenWeatherApiCurrentWeatherDataServiceTest {
     void givenService_whenGetWeatherLatitudeAndLongitude_thenWeatherDataResponseNotNull() {
         // given
         OpenWeatherApiCurrentWeatherDataService service = new OpenWeatherApiCurrentWeatherDataService();
-        LocationModel location = new LocationModel(52.229675, 21.012230);
+        WeatherDataRequestModel weatherDataRequestModel = new WeatherDataRequestModel(52.229675, 21.012230);
 
         // when
-        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(location);
+        OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(weatherDataRequestModel);
 
         // then
         assertNotNull(weatherDataResponse, "weatherDataResponse is null");

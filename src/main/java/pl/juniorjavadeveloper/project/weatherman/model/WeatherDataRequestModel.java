@@ -1,17 +1,17 @@
 package pl.juniorjavadeveloper.project.weatherman.model;
 
-public class LocationModel {
+public class WeatherDataRequestModel {
     private String city;
     private String countryCode;
     private double latitude;
     private double longitude;
 
-    public LocationModel(String city, String countryCode) {
+    public WeatherDataRequestModel(String city, String countryCode) {
         this.city = city;
         this.countryCode = countryCode;
     }
 
-    public LocationModel(double latitude, double longitude) {
+    public WeatherDataRequestModel(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
