@@ -1,7 +1,6 @@
 
-package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model;
+package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.current;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -10,7 +9,6 @@ import javax.annotation.processing.Generated;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonPropertyOrder({
     "coord",
     "weather",
@@ -18,14 +16,14 @@ import java.util.List;
     "main",
     "visibility",
     "wind",
+    "rain",
     "clouds",
     "dt",
     "sys",
     "timezone",
     "id",
     "name",
-    "cod",
-    "message"
+    "cod"
 })
 @Generated("jsonschema2pojo")
 public class OpenWeatherApiCurrentWeatherDataResponse {
@@ -42,6 +40,8 @@ public class OpenWeatherApiCurrentWeatherDataResponse {
     private Integer visibility;
     @JsonProperty("wind")
     private Wind wind;
+    @JsonProperty("rain")
+    private Rain rain;
     @JsonProperty("clouds")
     private Clouds clouds;
     @JsonProperty("dt")
@@ -117,6 +117,16 @@ public class OpenWeatherApiCurrentWeatherDataResponse {
     @JsonProperty("wind")
     public void setWind(Wind wind) {
         this.wind = wind;
+    }
+
+    @JsonProperty("rain")
+    public Rain getRain() {
+        return rain;
+    }
+
+    @JsonProperty("rain")
+    public void setRain(Rain rain) {
+        this.rain = rain;
     }
 
     @JsonProperty("clouds")
@@ -208,6 +218,7 @@ public class OpenWeatherApiCurrentWeatherDataResponse {
                 ", main=" + main +
                 ", visibility=" + visibility +
                 ", wind=" + wind +
+                ", rain=" + rain +
                 ", clouds=" + clouds +
                 ", dt=" + dt +
                 ", sys=" + sys +

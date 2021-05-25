@@ -1,5 +1,5 @@
 
-package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model;
+package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.current;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,28 +9,29 @@ import javax.annotation.processing.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "all"
+    "1h"
 })
 @Generated("jsonschema2pojo")
-public class Clouds {
+public class Rain {
 
-    @JsonProperty("all")
-    private Integer all;
+    @JsonProperty("1h")
+    private Double _1h;
 
-    @JsonProperty("all")
-    public Integer getAll() {
-        return all;
+    @JsonProperty("1h")
+    public Double get1h() {
+        return _1h;
     }
 
-    @JsonProperty("all")
-    public void setAll(Integer all) {
-        this.all = all;
+    @JsonProperty("1h")
+    public void set1h(Double _1h) {
+        this._1h = _1h;
     }
 
     @Override
     public String toString() {
-        return "Clouds{" +
-                "all=" + all +
+        return "Rain{" +
+                "_1h=" + _1h +
                 '}';
     }
+
 }

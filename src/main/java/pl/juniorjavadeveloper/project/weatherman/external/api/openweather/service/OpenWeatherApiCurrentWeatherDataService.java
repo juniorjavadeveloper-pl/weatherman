@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.OpenWeatherApiCurrentWeatherDataResponse;
+import pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.current.OpenWeatherApiCurrentWeatherDataResponse;
 import pl.juniorjavadeveloper.project.weatherman.model.WeatherDataRequestModel;
 
 import java.io.IOException;

@@ -1,5 +1,5 @@
 
-package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model;
+package pl.juniorjavadeveloper.project.weatherman.external.api.openweather.model.current;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
