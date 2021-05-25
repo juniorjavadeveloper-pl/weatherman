@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 public class OpenWeatherApiCurrentWeatherDataService {
     // API Docs - https://openweathermap.org/current (Current weather data)
+    // https://www.latlong.net - Latitude and Longitude Finder
 
     private static final Logger LOGGER = Logger.getLogger(OpenWeatherApiCurrentWeatherDataService.class.getName());
     private static final String SERVER_URL = "http://api.openweathermap.org/data/2.5/weather";

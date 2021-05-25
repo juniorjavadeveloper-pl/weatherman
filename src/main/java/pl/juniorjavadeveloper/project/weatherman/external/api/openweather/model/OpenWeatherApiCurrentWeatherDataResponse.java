@@ -22,7 +22,8 @@ import java.util.List;
     "timezone",
     "id",
     "name",
-    "cod"
+    "cod",
+    "message"
 })
 @Generated("jsonschema2pojo")
 public class OpenWeatherApiCurrentWeatherDataResponse {
@@ -53,6 +54,8 @@ public class OpenWeatherApiCurrentWeatherDataResponse {
     private String name;
     @JsonProperty("cod")
     private Integer cod;
+    @JsonProperty("message")
+    private String message;
 
     @JsonProperty("coord")
     public Coord getCoord() {
@@ -184,6 +187,16 @@ public class OpenWeatherApiCurrentWeatherDataResponse {
         this.cod = cod;
     }
 
+    @JsonProperty("message")
+    public String getMessage() {
+        return message;
+    }
+
+    @JsonProperty("message")
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public String toString() {
         return "OpenWeatherApiCurrentWeatherDataResponse{" +
@@ -200,6 +213,7 @@ public class OpenWeatherApiCurrentWeatherDataResponse {
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", cod=" + cod +
+                ", message='" + message + '\'' +
                 '}';
     }
 }
