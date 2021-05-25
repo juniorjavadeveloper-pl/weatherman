@@ -25,8 +25,8 @@ public class OpenWeatherApiCurrentWeatherDataService {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(SERVER_URL).newBuilder();
         urlBuilder.addQueryParameter("appid", "4129a96d211a9341db7daff3b83901da");
 
-        if (location.getLocationName() != null) {
-            urlBuilder.addQueryParameter("q", location.getLocationName());
+        if (location.getCity() != null) {
+            urlBuilder.addQueryParameter("q", location.getCity() + "," + location.getCountryCode());
         } else {
             urlBuilder.addQueryParameter("lat", String.valueOf(location.getLatitude()));
             urlBuilder.addQueryParameter("lon", String.valueOf(location.getLongitude()));

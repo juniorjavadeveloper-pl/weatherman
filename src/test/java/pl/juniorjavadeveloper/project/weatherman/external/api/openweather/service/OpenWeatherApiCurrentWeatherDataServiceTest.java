@@ -12,7 +12,7 @@ class OpenWeatherApiCurrentWeatherDataServiceTest {
     void givenService_whenGetWeatherLocationName_thenWeatherDataResponseNotNull() {
         // given
         OpenWeatherApiCurrentWeatherDataService service = new OpenWeatherApiCurrentWeatherDataService();
-        LocationModel location = new LocationModel("Warszawa");
+        LocationModel location = new LocationModel("Warszawa", "PL");
 
         // when
         OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse = service.getWeather(location);

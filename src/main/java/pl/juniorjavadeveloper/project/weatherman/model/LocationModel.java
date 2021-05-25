@@ -1,12 +1,14 @@
 package pl.juniorjavadeveloper.project.weatherman.model;
 
 public class LocationModel {
-    private String locationName;
+    private String city;
+    private String countryCode;
     private double latitude;
     private double longitude;
 
-    public LocationModel(String locationName) {
-        this.locationName = locationName;
+    public LocationModel(String city, String countryCode) {
+        this.city = city;
+        this.countryCode = countryCode;
     }
 
     public LocationModel(double latitude, double longitude) {
@@ -14,8 +16,12 @@ public class LocationModel {
         this.longitude = longitude;
     }
 
-    public String getLocationName() {
-        return locationName;
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
     }
 
     public double getLatitude() {
@@ -29,7 +35,8 @@ public class LocationModel {
     @Override
     public String toString() {
         return "LocationModel{" +
-                "locationName='" + locationName + '\'' +
+                "city='" + city + '\'' +
+                ", countryCode='" + countryCode + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
