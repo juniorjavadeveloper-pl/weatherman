@@ -75,12 +75,61 @@ public class HibernateWeathermanDao {
     // R - read aka. getLocationWeather(...)
     public LocationEntity read(Long id) {
         LOGGER.info("read(" + id + ")");
-        return null;
+
+        Session session = HibernateDaoUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        LocationEntity locationEntity = null;
+
+        try {
+            // Begin a transaction
+            transaction = session.beginTransaction();
+            // Save the Location
+            locationEntity = session.get(LocationEntity.class, id);
+            // Commit the transaction
+            transaction.commit();
+
+        } catch (Exception e) {
+            // If there are any exceptions, roll back the changes
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            // Print the Exception
+            e.printStackTrace();
+        } finally {
+            // Close the session
+            session.close();
+        }
+
+        return locationEntity;
     }
 
     // U - update aka. saveLocationWeather(...)
     public LocationEntity update(Long id, LocationEntity locationEntity) {
         LOGGER.info("update(" + id + ", " + locationEntity + ")");
-        return null;
+
+        Session session = HibernateDaoUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            // Begin a transaction
+            transaction = session.beginTransaction();
+            // Save the Location
+            session.saveOrUpdate(locationEntity);
+            // Commit the transaction
+            transaction.commit();
+
+        } catch (Exception e) {
+            // If there are any exceptions, roll back the changes
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            // Print the Exception
+            e.printStackTrace();
+        } finally {
+            // Close the session
+            session.close();
+        }
+
+        return locationEntity;
     }
 }
