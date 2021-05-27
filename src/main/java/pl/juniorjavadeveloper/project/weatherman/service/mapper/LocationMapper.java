@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class LocationModelMapper {
-    private static final Logger LOGGER = Logger.getLogger(LocationModelMapper.class.getName());
+public class LocationMapper {
+    private static final Logger LOGGER = Logger.getLogger(LocationMapper.class.getName());
 
     public List<LocationModel> fromList(List<LocationEntity> locationEntities) {
         LOGGER.info("from(" + locationEntities + ")");
