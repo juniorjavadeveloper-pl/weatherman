@@ -3,6 +3,7 @@ package pl.juniorjavadeveloper.project.weatherman.service;
 import pl.juniorjavadeveloper.project.weatherman.dao.hibernate.HibernateWeathermanDao;
 import pl.juniorjavadeveloper.project.weatherman.dao.hibernate.LocationEntity;
 import pl.juniorjavadeveloper.project.weatherman.model.LocationModel;
+import pl.juniorjavadeveloper.project.weatherman.service.mapper.LocationMapper;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -12,23 +13,32 @@ public class WeathermanService {
     private static final Logger LOGGER = Logger.getLogger(WeathermanService.class.getName());
 
     private final HibernateWeathermanDao hibernateWeathermanDao;
+    private final LocationMapper locationMapper;
 
-    public WeathermanService(HibernateWeathermanDao hibernateWeathermanDao) {
+    public WeathermanService(HibernateWeathermanDao hibernateWeathermanDao, LocationMapper locationMapper) {
         this.hibernateWeathermanDao = hibernateWeathermanDao;
+        this.locationMapper = locationMapper;
     }
 
     // L - list aka. listLocations()
     public List<LocationModel> list() {
         LOGGER.info("list()");
         List<LocationEntity> locationEntities = hibernateWeathermanDao.list();
-        return null;
+        List<LocationModel> locationModels = locationMapper.fromList(locationEntities);
+        LOGGER.info("list() = " + locationModels);
+        return locationModels;
     }
 
     // C - create aka. addLocation(...)
     public LocationModel create(LocationModel locationModel) {
         LOGGER.info("create(" + locationModel + ")");
-//        hibernateWeathermanDao.create(locationEntity);
-        return null;
+
+        LocationEntity locationEntity = locationMapper.from(locationModel);
+        LocationEntity createdLocationEntity = hibernateWeathermanDao.create(locationEntity);
+        LocationModel createdLocationModel = locationMapper.from(createdLocationEntity);
+
+        LOGGER.info("create(...) = " + createdLocationModel);
+        return createdLocationModel;
     }
 
     // R - read aka. getLocationWeather(...)
