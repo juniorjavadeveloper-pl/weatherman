@@ -33,15 +33,17 @@ public class LocationMapper {
 //        LocationModel locationModel = modelMapper.map(locationEntity, LocationModel.class);
 
         LocationModel locationModel = new LocationModel();
-        locationModel.setId(locationEntity.getId());
-        locationModel.setCity(locationEntity.getCity());
-        locationModel.setCountryCode(locationEntity.getCountryCode());
-        locationModel.setLatitude(locationEntity.getLatitude());
-        locationModel.setLongitude(locationEntity.getLongitude());
-        locationModel.setTemperature(locationEntity.getTemperature());
-        locationModel.setPressure(locationEntity.getPressure());
-        locationModel.setHumidity(locationEntity.getHumidity());
-        locationModel.setWindSpeed(locationEntity.getWindSpeed());
+        if (locationEntity != null) {
+            locationModel.setId(locationEntity.getId());
+            locationModel.setCity(locationEntity.getCity());
+            locationModel.setCountryCode(locationEntity.getCountryCode());
+            locationModel.setLatitude(locationEntity.getLatitude());
+            locationModel.setLongitude(locationEntity.getLongitude());
+            locationModel.setTemperature(locationEntity.getTemperature());
+            locationModel.setPressure(locationEntity.getPressure());
+            locationModel.setHumidity(locationEntity.getHumidity());
+            locationModel.setWindSpeed(locationEntity.getWindSpeed());
+        }
 
         LOGGER.info("from(...) = " + locationModel);
         return locationModel;

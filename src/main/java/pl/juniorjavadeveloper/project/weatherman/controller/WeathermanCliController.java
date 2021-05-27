@@ -1,7 +1,9 @@
 package pl.juniorjavadeveloper.project.weatherman.controller;
 
 import pl.juniorjavadeveloper.project.weatherman.model.LocationModel;
-import pl.juniorjavadeveloper.project.weatherman.service.WeathermanService;
+import pl.juniorjavadeveloper.project.weatherman.model.WeatherDataRequestModel;
+import pl.juniorjavadeveloper.project.weatherman.service.WeathermanManagerService;
+import pl.juniorjavadeveloper.project.weatherman.utils.CliUtils;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +13,7 @@ public class WeathermanCliController {
     private static final Logger LOGGER = Logger.getLogger(WeathermanCliController.class.getName());
 
     private final Scanner scanner;
-    private final WeathermanService weathermanService;
+    private final WeathermanManagerService weathermanManagerService;
 
     public static final String CLI_GLOBAL_CHOOSE_ACTION_INFO_TEXT =
             "Choose action:\n" +
@@ -20,9 +22,9 @@ public class WeathermanCliController {
                     "3 - Get Location Weather\n" +
                     "q - Quit App\n";
 
-    public WeathermanCliController(Scanner scanner, WeathermanService weathermanService) {
+    public WeathermanCliController(Scanner scanner, WeathermanManagerService weathermanManagerService) {
         this.scanner = scanner;
-        this.weathermanService = weathermanService;
+        this.weathermanManagerService = weathermanManagerService;
     }
 
     public void mainCLiLoop() {
@@ -41,26 +43,37 @@ public class WeathermanCliController {
 
             switch (chosenAction) {
                 case 1: {
-                    // add location
-                    System.out.println("Adding new Location:");
-                    weathermanService.create(new LocationModel());
-                    break;
-                }
-                case 2: {
                     // list locations
-                    List<LocationModel> locations = weathermanService.list();
+                    List<LocationModel> locations = weathermanManagerService.list();
                     System.out.println("All Locations:");
                     locations.forEach(System.out::println);
                     break;
                 }
+                case 2: {
+                    // add location
+                    System.out.println("Adding new Location:");
+
+                    String city = CliUtils.textInputWait(scanner, "Enter City name (e.g.: Warsaw):");
+                    String countryCode = CliUtils.textInputWait(scanner, "Enter Country Code (e.g.: PL):");;
+                    WeatherDataRequestModel weatherDataRequestModel = new WeatherDataRequestModel(city, countryCode);
+
+                    LocationModel locationModel = weathermanManagerService.create(weatherDataRequestModel);
+                    System.out.println("Added Location data:");
+                    System.out.println(locationModel);
+                    break;
+                }
                 case 3: {
                     // get location weather
-                    LocationModel locationWeatherData = weathermanService.read(1L);
+//                    String locationId = CliUtils.textInputWait(scanner, "Enter Location ID (TIP: Use Command \"1 - List Locations\" ):");
+                    Long locationId = CliUtils.numberInputWait(scanner, "Enter Location ID (TIP: Use Command \"1 - List Locations\" ):");
+
+                    LocationModel locationWeatherData = weathermanManagerService.read(locationId);
                     System.out.println("Location Weather Data:");
                     System.out.println(locationWeatherData);
                     break;
                 }
                 default: {
+                    System.out.println("Unknown Action!");
                     break;
                 }
             }
