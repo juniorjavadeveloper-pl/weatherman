@@ -28,11 +28,6 @@ public class OpenWeatherMapper {
             if (weatherDataResponseWind != null) {
                 locationModel.setWindSpeed(weatherDataResponseWind.getSpeed());
             }
-
-//            locationModel.setCity(locationEntity.getCity());
-//            locationModel.setCountryCode(locationEntity.getCountryCode());
-//            locationModel.setLatitude(locationEntity.getLatitude());
-//            locationModel.setLongitude(locationEntity.getLongitude());
         }
 
         LOGGER.info("from(...) = " + locationModel);
