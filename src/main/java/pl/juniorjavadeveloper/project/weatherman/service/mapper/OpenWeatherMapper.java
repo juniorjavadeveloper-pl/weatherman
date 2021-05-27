@@ -17,8 +17,16 @@ public class OpenWeatherMapper {
         LocationModel locationModel = new LocationModel();
 
         if (weatherDataResponse != null) {
+            Coord weatherDataResponseCoord = weatherDataResponse.getCoord();
+            if (weatherDataResponseCoord != null) {
+                LOGGER.info("adding weather coordinates data...");
+                locationModel.setLatitude(weatherDataResponseCoord.getLat());
+                locationModel.setLongitude(weatherDataResponseCoord.getLon());
+            }
+
             Main weatherDataResponseMain = weatherDataResponse.getMain();
             if (weatherDataResponseMain != null) {
+                LOGGER.info("adding weather main data...");
                 locationModel.setTemperature(weatherDataResponseMain.getTemp());
                 locationModel.setPressure(weatherDataResponseMain.getPressure());
                 locationModel.setHumidity(weatherDataResponseMain.getHumidity());
@@ -26,41 +34,20 @@ public class OpenWeatherMapper {
 
             Wind weatherDataResponseWind = weatherDataResponse.getWind();
             if (weatherDataResponseWind != null) {
+                LOGGER.info("adding weather wind data...");
                 locationModel.setWindSpeed(weatherDataResponseWind.getSpeed());
+            }
+
+            LOGGER.info("adding weather location info...");
+            locationModel.setCity(weatherDataResponse.getName());
+
+            Sys weatherDataResponseSys = weatherDataResponse.getSys();
+            if (weatherDataResponseSys != null) {
+                locationModel.setCountryCode(weatherDataResponseSys.getCountry());
             }
         }
 
         LOGGER.info("from(...) = " + locationModel);
-        return locationModel;
-    }
-
-    public LocationModel merge(LocationModel locationModel, OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse) {
-        LOGGER.info("merge(" + locationModel + ", " + weatherDataResponse + ")");
-
-        if (locationModel.getLatitude() == 0) {
-            if (weatherDataResponse != null) {
-                LOGGER.info("merging coordinates...");
-                Coord weatherDataResponseCoord = weatherDataResponse.getCoord();
-                if (weatherDataResponseCoord != null) {
-                    locationModel.setLatitude(weatherDataResponseCoord.getLat());
-                    locationModel.setLongitude(weatherDataResponseCoord.getLon());
-                }
-            }
-        }
-
-        if (locationModel.getCity() == null) {
-            if (weatherDataResponse != null) {
-                LOGGER.info("merging location info...");
-                locationModel.setCity(weatherDataResponse.getName());
-
-                Sys weatherDataResponseSys = weatherDataResponse.getSys();
-                if (weatherDataResponseSys != null) {
-                    locationModel.setCountryCode(weatherDataResponseSys.getCountry());
-                }
-            }
-        }
-
-        LOGGER.info("merge(...) = " + locationModel);
         return locationModel;
     }
 }

@@ -22,7 +22,7 @@ public class LocationMapper {
         LOGGER.info("from(" + locationModel + ")");
         ModelMapper modelMapper = new ModelMapper();
         LocationEntity locationEntity = modelMapper.map(locationModel, LocationEntity.class);
-        LOGGER.info("from(" + locationModel + ") = " + locationEntity);
+        LOGGER.info("from(...) = " + locationEntity);
         return locationEntity;
     }
 
@@ -43,7 +43,7 @@ public class LocationMapper {
         locationModel.setHumidity(locationEntity.getHumidity());
         locationModel.setWindSpeed(locationEntity.getWindSpeed());
 
-        LOGGER.info("from(" + locationEntity + ") = " + locationModel);
+        LOGGER.info("from(...) = " + locationModel);
         return locationModel;
     }
 }

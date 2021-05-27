@@ -29,17 +29,6 @@ public class LocationEntity {
     public LocationEntity() {
     }
 
-    public LocationEntity(String city, String countryCode, double latitude, double longitude, double temperature, int pressure, int humidity, double windSpeed) {
-        this.city = city;
-        this.countryCode = countryCode;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.temperature = temperature;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.windSpeed = windSpeed;
-    }
-
     public Long getId() {
         return id;
     }

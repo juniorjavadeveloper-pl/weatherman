@@ -88,7 +88,7 @@ class HibernateWeathermanDaoTest {
         Long locationEntityId = createdLocationEntity.getId();
         updateLocationEntity.setId(locationEntityId);
 
-        dao.update(locationEntityId, updateLocationEntity);
+        dao.update(updateLocationEntity);
         LocationEntity readLocationEntity = dao.read(locationEntityId);
 
         // then

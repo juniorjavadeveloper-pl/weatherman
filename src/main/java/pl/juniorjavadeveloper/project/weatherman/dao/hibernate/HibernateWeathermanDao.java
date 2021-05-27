@@ -104,8 +104,8 @@ public class HibernateWeathermanDao {
     }
 
     // U - update aka. saveLocationWeather(...)
-    public LocationEntity update(Long id, LocationEntity locationEntity) {
-        LOGGER.info("update(" + id + ", " + locationEntity + ")");
+    public LocationEntity update(LocationEntity locationEntity) {
+        LOGGER.info("update(" + locationEntity + ")");
 
         Session session = HibernateDaoUtils.getSessionFactory().openSession();
         Transaction transaction = null;

@@ -45,14 +45,21 @@ public class WeathermanService {
     public LocationModel read(Long id) {
         LOGGER.info("read(" + id + ")");
         LocationEntity locationEntity = hibernateWeathermanDao.read(id);
-        return null;
+        LocationModel locationModel = locationMapper.from(locationEntity);
+        LOGGER.info("read(...) = " + locationModel);
+        return locationModel;
     }
 
     // U - update aka. saveLocationWeather(...)
     public LocationModel update(LocationModel locationModel) {
         LOGGER.info("update(" + locationModel + ")");
-//        hibernateWeathermanDao.update(locationEntity);
-        return null;
+
+        LocationEntity locationEntity = locationMapper.from(locationModel);
+        LocationEntity updatedLocationEntity = hibernateWeathermanDao.update(locationEntity);
+        LocationModel updatedLocationModel = locationMapper.from(updatedLocationEntity);
+
+        LOGGER.info("update(...) = " + updatedLocationModel);
+        return updatedLocationModel;
     }
 
     // D - delete aka. removeLocation(...)
