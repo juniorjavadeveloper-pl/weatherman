@@ -1,5 +1,7 @@
 package pl.juniorjavadeveloper.project.weatherman.service;
 
+import pl.juniorjavadeveloper.project.weatherman.dao.hibernate.HibernateWeathermanDao;
+import pl.juniorjavadeveloper.project.weatherman.dao.hibernate.LocationEntity;
 import pl.juniorjavadeveloper.project.weatherman.model.LocationModel;
 
 import java.util.List;
@@ -9,27 +11,37 @@ public class WeathermanService {
 
     private static final Logger LOGGER = Logger.getLogger(WeathermanService.class.getName());
 
+    private final HibernateWeathermanDao hibernateWeathermanDao;
+
+    public WeathermanService(HibernateWeathermanDao hibernateWeathermanDao) {
+        this.hibernateWeathermanDao = hibernateWeathermanDao;
+    }
+
     // L - list aka. listLocations()
     public List<LocationModel> list() {
         LOGGER.info("list()");
+        List<LocationEntity> locationEntities = hibernateWeathermanDao.list();
         return null;
     }
 
     // C - create aka. addLocation(...)
     public LocationModel create(LocationModel locationModel) {
         LOGGER.info("create(" + locationModel + ")");
+//        hibernateWeathermanDao.create(locationEntity);
         return null;
     }
 
     // R - read aka. getLocationWeather(...)
     public LocationModel read(Long id) {
         LOGGER.info("read(" + id + ")");
+        LocationEntity locationEntity = hibernateWeathermanDao.read(id);
         return null;
     }
 
     // U - update aka. saveLocationWeather(...)
-    public LocationModel update(Long id, LocationModel locationModel) {
-        LOGGER.info("update(" + id + ", " + locationModel + ")");
+    public LocationModel update(LocationModel locationModel) {
+        LOGGER.info("update(" + locationModel + ")");
+//        hibernateWeathermanDao.update(locationEntity);
         return null;
     }
 
