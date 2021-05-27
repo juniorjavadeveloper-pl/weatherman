@@ -17,8 +17,16 @@ public class OpenWeatherMapper {
         LocationModel locationModel = new LocationModel();
 
         if (weatherDataResponse != null) {
+            Coord weatherDataResponseCoord = weatherDataResponse.getCoord();
+            if (weatherDataResponseCoord != null) {
+                LOGGER.info("adding weather coordinates data...");
+                locationModel.setLatitude(weatherDataResponseCoord.getLat());
+                locationModel.setLongitude(weatherDataResponseCoord.getLon());
+            }
+
             Main weatherDataResponseMain = weatherDataResponse.getMain();
             if (weatherDataResponseMain != null) {
+                LOGGER.info("adding weather main data...");
                 locationModel.setTemperature(weatherDataResponseMain.getTemp());
                 locationModel.setPressure(weatherDataResponseMain.getPressure());
                 locationModel.setHumidity(weatherDataResponseMain.getHumidity());
@@ -26,7 +34,16 @@ public class OpenWeatherMapper {
 
             Wind weatherDataResponseWind = weatherDataResponse.getWind();
             if (weatherDataResponseWind != null) {
+                LOGGER.info("adding weather wind data...");
                 locationModel.setWindSpeed(weatherDataResponseWind.getSpeed());
+            }
+
+            LOGGER.info("adding weather location info...");
+            locationModel.setCity(weatherDataResponse.getName());
+
+            Sys weatherDataResponseSys = weatherDataResponse.getSys();
+            if (weatherDataResponseSys != null) {
+                locationModel.setCountryCode(weatherDataResponseSys.getCountry());
             }
         }
 
