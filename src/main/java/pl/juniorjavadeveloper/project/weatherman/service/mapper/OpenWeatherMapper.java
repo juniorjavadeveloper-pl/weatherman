@@ -50,34 +50,4 @@ public class OpenWeatherMapper {
         LOGGER.info("from(...) = " + locationModel);
         return locationModel;
     }
-
-    public LocationModel merge(LocationModel locationModel, OpenWeatherApiCurrentWeatherDataResponse weatherDataResponse) {
-        LOGGER.info("merge(" + locationModel + ", " + weatherDataResponse + ")");
-
-        if (locationModel.getLatitude() == 0) {
-            if (weatherDataResponse != null) {
-                LOGGER.info("merging coordinates...");
-                Coord weatherDataResponseCoord = weatherDataResponse.getCoord();
-                if (weatherDataResponseCoord != null) {
-                    locationModel.setLatitude(weatherDataResponseCoord.getLat());
-                    locationModel.setLongitude(weatherDataResponseCoord.getLon());
-                }
-            }
-        }
-
-        if (locationModel.getCity() == null) {
-            if (weatherDataResponse != null) {
-                LOGGER.info("merging location info...");
-                locationModel.setCity(weatherDataResponse.getName());
-
-                Sys weatherDataResponseSys = weatherDataResponse.getSys();
-                if (weatherDataResponseSys != null) {
-                    locationModel.setCountryCode(weatherDataResponseSys.getCountry());
-                }
-            }
-        }
-
-        LOGGER.info("merge(...) = " + locationModel);
-        return locationModel;
-    }
 }

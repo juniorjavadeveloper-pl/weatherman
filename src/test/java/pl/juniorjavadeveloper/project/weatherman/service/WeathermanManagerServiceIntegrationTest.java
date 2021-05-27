@@ -7,7 +7,6 @@ import pl.juniorjavadeveloper.project.weatherman.model.LocationModel;
 import pl.juniorjavadeveloper.project.weatherman.model.WeatherDataRequestModel;
 import pl.juniorjavadeveloper.project.weatherman.service.mapper.LocationMapper;
 import pl.juniorjavadeveloper.project.weatherman.service.mapper.OpenWeatherMapper;
-import pl.juniorjavadeveloper.project.weatherman.service.mapper.WeatherDataRequestMapper;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,10 +23,9 @@ class WeathermanManagerServiceIntegrationTest {
     }
 
     @Test
-    void givenService_whenCreateLocation_thenCreatedLocationFieldsCorrect() {
+    void givenServicesAndWeatherDataRequest_whenCreateAndRead_thenCreatedLocationFieldsCorrect() {
         // given
         LocationMapper locationMapper = new LocationMapper();
-        WeatherDataRequestMapper weatherDataRequestMapper = new WeatherDataRequestMapper();
         OpenWeatherMapper openWeatherMapper = new OpenWeatherMapper();
 
         HibernateWeathermanDao hibernateWeatherDao = new HibernateWeathermanDao();
@@ -35,8 +33,7 @@ class WeathermanManagerServiceIntegrationTest {
         OpenWeatherApiCurrentWeatherDataService openWeatherApiCurrentWeatherDataService = new OpenWeatherApiCurrentWeatherDataService();
 
         WeathermanManagerService weathermanManagerService = new WeathermanManagerService(
-                weathermanService, openWeatherApiCurrentWeatherDataService,
-                locationMapper, weatherDataRequestMapper, openWeatherMapper);
+                weathermanService, openWeatherApiCurrentWeatherDataService, openWeatherMapper);
 
         WeatherDataRequestModel weatherDataRequestModel = new WeatherDataRequestModel(LOCATION_CITY_WARSZAWA, LOCATION_COUNTRY_CODE);
 
@@ -49,13 +46,11 @@ class WeathermanManagerServiceIntegrationTest {
                 () -> assertNotNull(createdLocationModel, "createdLocationModel is null"),
                 () -> assertNotNull(readLocationModel, "readLocationModel is null"),
 
-//                () -> assertEquals(LOCATION_CITY_WARSZAWA, createdLocationModel.getCity(), "createdLocationModel CITY is null"),
                 () -> assertEquals(LOCATION_COUNTRY_CODE, createdLocationModel.getCountryCode(), "createdLocationModel COUNTRY CODE is null"),
-
-//                () -> assertEquals(LOCATION_CITY_WARSZAWA, readLocationModel.getCity(), "readLocationModel CITY is null"),
                 () -> assertEquals(LOCATION_COUNTRY_CODE, readLocationModel.getCountryCode(), "readLocationModel COUNTRY CODE is null"),
 
-                () -> assertEquals(createdLocationModel.getTemperature(), readLocationModel.getTemperature(), "TEMPERATURE are not equal")
+                () -> assertEquals(createdLocationModel.getTemperature(), readLocationModel.getTemperature(), "TEMPERATURE are not equal"),
+                () -> assertEquals(createdLocationModel.getHumidity(), readLocationModel.getHumidity(), "HUMIDITY are not equal")
         );
     }
 
